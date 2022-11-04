@@ -4,8 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -104,7 +107,19 @@ class MainActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
             val mainRecyclerBinding = MainRecyclerRowBinding.inflate(layoutInflater)
-            return ViewHolderClass(mainRecyclerBinding)
+            val holder = ViewHolderClass(mainRecyclerBinding)
+
+            // 생성되는 항목 View의 width, height
+            val layoutParams = RecyclerView.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            mainRecyclerBinding.root.layoutParams = layoutParams
+
+            // 항목 View에 이벤트 설정
+            mainRecyclerBinding.root.setOnClickListener(holder)
+
+            return holder
         }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
@@ -117,10 +132,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         // HolderClass
-        inner class ViewHolderClass(mainRecyclerBinding: MainRecyclerRowBinding) : RecyclerView.ViewHolder(mainRecyclerBinding.root) {
+        inner class ViewHolderClass(mainRecyclerBinding: MainRecyclerRowBinding) : RecyclerView.ViewHolder(mainRecyclerBinding.root), OnClickListener {
             // view의 주소값을 담음
             val rowMemoSubject = mainRecyclerBinding.memoSubject
             val rowMemoDate = mainRecyclerBinding.memoDate
+
+            override fun onClick(p0: View?) {
+                // Log.d("memo_app", "adapterPosition = $adapterPosition")
+
+                // MemoReadActivity 실행
+                val memoReadIntent = Intent(baseContext, MemoReadActivity::class.java)
+                startActivity(memoReadIntent)
+            }
         }
     }
 }
