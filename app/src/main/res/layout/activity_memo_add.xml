@@ -14,4 +14,31 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
+
+    <EditText
+        android:id="@+id/add_memo_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_500"
+        android:ems="10"
+        android:hint="Memo Title"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textCursorDrawable="@drawable/cursor_drawable"
+        android:textColorHighlight="@color/purple_200"
+        android:textColorLink="@color/purple_200" />
+
+    <EditText
+        android:id="@+id/add_memo_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/purple_500"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Input text"
+        android:inputType="textMultiLine"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textCursorDrawable="@drawable/cursor_drawable"
+        android:textColorHighlight="@color/purple_200"
+        android:textColorLink="@color/purple_200" />
 </LinearLayout>
