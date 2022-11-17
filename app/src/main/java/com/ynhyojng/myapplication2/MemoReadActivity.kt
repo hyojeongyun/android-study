@@ -75,6 +75,10 @@ class MemoReadActivity : AppCompatActivity() {
             // 메뉴 수정
             R.id.read_modify -> {
                 var memoModifyIntent = Intent(this, MemoModifyActivity::class.java)
+
+                val memoIdx = intent.getIntExtra("memoIdx", 0)
+                memoModifyIntent.putExtra("memoIdx", memoIdx)
+
                 startActivity(memoModifyIntent)
             }
             // 메뉴 삭제
