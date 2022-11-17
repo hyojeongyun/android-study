@@ -1,7 +1,9 @@
 package com.ynhyojng.myapplication2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import com.ynhyojng.myapplication2.databinding.ActivityMemoReadBinding
 
@@ -59,14 +61,28 @@ class MemoReadActivity : AppCompatActivity() {
         binding.memoReadText.text = memoText
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.read_menu, menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when(item.itemId){
             android.R.id.home -> {
                 finish()
             }
+            // 메뉴 수정
+            R.id.read_modify -> {
+                var memoModifyIntent = Intent(this, MemoModifyActivity::class.java)
+                startActivity(memoModifyIntent)
+            }
+            // 메뉴 삭제
+            R.id.read_delete -> {
+
+            }
         }
 
-        return super.onOptionsItemSelected(item)
+       return super.onOptionsItemSelected(item)
     }
 }
